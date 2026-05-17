@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Goal Portal</title>
+</head>
+
+<body>
+
+    <h1>Employee Goals</h1>
+
+    <a href="/create">
+        Create Goal
+    </a>
+
+    <hr>
+
+    {% for goal in goals %}
+
+        <h2>{{ goal.title }}</h2>
+
+        <p>
+            Employee:
+            {{ goal.employee_name }}
+        </p>
+
+        <p>
+            Description:
+            {{ goal.description }}
+        </p>
+
+        <p>
+            Target:
+            {{ goal.target }}
+        </p>
+
+        <p>
+            Weightage:
+            {{ goal.weightage }}%
+        </p>
+
+        <p>
+            Status:
+            {{ goal.status }}
+        </p>
+
+        {% if goal.status == "Pending" %}
+
+            <a href="/approve/{{ goal.id }}">
+                Approve Goal
+            </a>
+
+        {% endif %}
+
+        <hr>
+
+    {% endfor %}
+
+</body>
+</html>
