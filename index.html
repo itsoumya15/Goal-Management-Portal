@@ -1,59 +1,52 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Goal Portal</title>
+    <title>GoalSync Portal</title>
 </head>
-
 <body>
 
-    <h1>Employee Goals</h1>
+    <h1>GoalSync - Goal Management Portal</h1>
 
-    <a href="/create">
-        Create Goal
-    </a>
+    <form action="/add_goal" method="POST">
+
+        <input type="text" name="employee" placeholder="Employee Name" required><br><br>
+
+        <input type="text" name="thrust_area" placeholder="Thrust Area" required><br><br>
+
+        <input type="text" name="goal_title" placeholder="Goal Title" required><br><br>
+
+        <textarea name="description" placeholder="Goal Description"></textarea><br><br>
+
+        <select name="uom">
+            <option value="Numeric">Numeric</option>
+            <option value="%">Percentage</option>
+            <option value="Timeline">Timeline</option>
+            <option value="Zero-based">Zero-based</option>
+        </select><br><br>
+
+        <input type="text" name="target" placeholder="Target"><br><br>
+
+        <input type="number" name="weightage" placeholder="Weightage"><br><br>
+
+        <button type="submit">Submit Goal</button>
+
+    </form>
 
     <hr>
 
+    <h2>Submitted Goals</h2>
+
     {% for goal in goals %}
-
-        <h2>{{ goal.title }}</h2>
-
-        <p>
-            Employee:
-            {{ goal.employee_name }}
-        </p>
-
-        <p>
-            Description:
-            {{ goal.description }}
-        </p>
-
-        <p>
-            Target:
-            {{ goal.target }}
-        </p>
-
-        <p>
-            Weightage:
-            {{ goal.weightage }}%
-        </p>
-
-        <p>
-            Status:
-            {{ goal.status }}
-        </p>
-
-        {% if goal.status == "Pending" %}
-
-            <a href="/approve/{{ goal.id }}">
-                Approve Goal
-            </a>
-
-        {% endif %}
-
-        <hr>
-
+        <div>
+            <h3>{{ goal.goal_title }}</h3>
+            <p><strong>Employee:</strong> {{ goal.employee }}</p>
+            <p><strong>Thrust Area:</strong> {{ goal.thrust_area }}</p>
+            <p><strong>Description:</strong> {{ goal.description }}</p>
+            <p><strong>UOM:</strong> {{ goal.uom }}</p>
+            <p><strong>Target:</strong> {{ goal.target }}</p>
+            <p><strong>Weightage:</strong> {{ goal.weightage }}</p>
+            <hr>
+        </div>
     {% endfor %}
 
 </body>
