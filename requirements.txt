@@ -1,4 +1,3 @@
 flask
-langchain
-faiss-cpu
-openai
+flask-sqlalchemy
+gunicorn
